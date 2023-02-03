@@ -23,6 +23,7 @@ const auth = getAuth(app);
 // initialize database
 const db = getFirestore(app);
 
+// initialize server time stamp
 const timestamp = serverTimestamp();
 
 export { app, auth, db, timestamp };

@@ -24,14 +24,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { signInUser, errorCode, isValidating } from "../composables/login";
+import { signInUser, errorCode, isValidating, email, password } from "../composables/login-service";
 
-// refs
-const email = ref();
-const password = ref();
-
-// methods
 const handleSubmit = async function () {
   isValidating.value = true;
   errorCode.value = "";

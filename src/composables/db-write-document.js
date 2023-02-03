@@ -1,5 +1,5 @@
 import { collection, addDoc } from "firebase/firestore";
-import { db, timestamp } from "../config/firebase";
+import { db } from "../config/firebase";
 
 async function writeDocument(collection_name, data) {
   try {

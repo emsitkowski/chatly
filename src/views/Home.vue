@@ -1,10 +1,13 @@
 <template>
-  <Login />
-  <router-link to="/signup" class="link">Create an account</router-link>
+  <AuthForm type="login">
+    <template v-slot:header>Join the chatroom</template>
+    <template v-slot:buttonText>log in</template>
+  </AuthForm>
+  <router-link to="/register" class="link">Create an account</router-link>
 </template>
 
 <script setup>
-import Login from "../components/Login.vue";
+import AuthForm from "../components/AuthForm.vue";
 </script>
 
 <style scoped></style>

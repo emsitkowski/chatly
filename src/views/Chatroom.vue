@@ -7,39 +7,19 @@
           <div class="msg">{{ doc.message }}, {{ doc.user }}</div>
         </div>
       </div>
-      <div class="new-msg">
-        <form @submit.prevent="handleSubmit">
-          <input type="text" name="new" id="" placeholder="new message" v-model="newMessage" />
-        </form>
-      </div>
     </div>
+    <NewChatForm />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { auth, timestamp } from "./../config/firebase";
-import { writeDocument } from "../composables/db-write-document";
+import NewChatForm from "../components/NewChatForm.vue";
+import { onMounted } from "vue";
 import { getCollection, documents } from "../composables/db-get-collection";
-
-const newMessage = ref();
 
 onMounted(() => {
   getCollection("messages");
 });
-
-async function handleSubmit() {
-  const chat = {
-    user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
-    message: newMessage.value,
-    createdAt: timestamp,
-  };
-
-  await writeDocument("messages", chat);
-  await getCollection("messages");
-
-  newMessage.value = "";
-}
 </script>
 
 <style scoped>
@@ -55,12 +35,5 @@ async function handleSubmit() {
 
 .inner-wrapper {
   padding: 32px;
-}
-
-.messages {
-}
-.msg {
-  font-weight: 300;
-  text-align: start;
 }
 </style>
