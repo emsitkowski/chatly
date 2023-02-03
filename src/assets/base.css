@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Pacifico", sans-serif;
+  font-size: 48px;
+  color: #2b2d42;
+}
+
+h2 {
+  margin: 0 0 24px 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.link {
+  text-decoration: none;
+  margin: 14px;
+  color: inherit;
+  font-weight: 400;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+.login,
+.signup {
+  background-color: #edf2f4;
+  border-radius: 16px;
+  padding: 32px 0;
+  width: 364px;
+  max-width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form[disabled="true"] input {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+form input {
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+form label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  text-align: start;
+  font-weight: 300;
+}
+.email,
+.password {
+  display: flex;
+  flex-direction: column;
+}
+
+.email {
+  margin-bottom: 16px;
+}
+.submit button {
+  margin-top: 24px;
+  border: none;
+  background: #2b2d42;
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 8px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.submit button:hover {
+  opacity: 1;
+}
+
+.error {
+  margin-top: 8px;
+  color: #d90429;
+  font-size: 12px;
+}
