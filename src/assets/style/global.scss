@@ -1,0 +1,68 @@
+@import "./theme.scss";
+
+// >>> Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  color: $dark-100;
+}
+
+// >>> Typography
+h1 {
+  font-family: "Unbounded", sans-serif;
+  font-size: 4.2rem;
+  color: white;
+  font-weight: 400;
+  margin-bottom: $spacing-xl;
+}
+
+h2 {
+  font-family: "Unbounded", sans-serif;
+  color: #333;
+  font-size: 3.2rem;
+  font-weight: 400;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 1.6rem;
+  letter-spacing: 0.4px;
+  line-height: 1.4;
+}
+
+// >>> Links
+.link {
+  text-decoration: none;
+  margin: 14px;
+  color: inherit;
+  font-weight: 400;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+// >>> Layout
+.container-full {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

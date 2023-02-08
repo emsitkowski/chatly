@@ -1,16 +1,22 @@
 <template>
-  <div class="homescreen">
-    <h1>Get started</h1>
-    <AuthForm type="login">
-      <template v-slot:header>Join the chatroom</template>
-      <template v-slot:buttonText>log in</template>
-    </AuthForm>
-    <router-link to="/register" class="link">Create an account</router-link>
+  <div class="container-full">
+    <h1>Join the chatroom</h1>
+    <AuthSection type="login">
+      <template v-slot:header>Log in</template>
+      <template v-slot:subheader>Join the chatroom and meet awesome people just now!</template>
+      <template v-slot:button>
+        <Button type="submit" text="Log in" class="primary" />
+        <router-link to="/register">
+          <Button text="Create an account" class="secondary" />
+        </router-link>
+      </template>
+    </AuthSection>
   </div>
 </template>
 
 <script setup>
-import AuthForm from "../components/AuthForm.vue";
+import AuthSection from "../components/AuthSection.vue";
+import Button from "../components/Button.vue";
 </script>
 
 <style lang="scss" scoped></style>

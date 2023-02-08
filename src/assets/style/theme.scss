@@ -1,0 +1,25 @@
+// >>> Colors
+$primary-100: #f52586;
+$primary-200: #b5179e;
+$gray-100: #edeffb;
+$gray-200: #e2e3f2;
+$dark-100: #333333;
+$gradient-primary: linear-gradient(45deg, $primary-100, $primary-200);
+
+// >>> Spacings
+$spacing-xs: 2px;
+$spacing-sm: 4px;
+$spacing-md: 8px;
+$spacing-lg: 16px;
+$spacing-xl: 32px;
+$spacing-2xl: 64px;
+$spacing-3xl: 86px;
+$spacing-4xl: 132px;
+$spacing-5xl: 164px;
+$spacing-6xl: 186px;
+
+// >>> Borders
+$border-sm: 8px;
+$border-md: 16px;
+$border-lg: 32px;
+$border-xl: 64px;
