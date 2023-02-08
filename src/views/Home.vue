@@ -1,4 +1,5 @@
 <template>
+  <h1>Get started</h1>
   <AuthForm type="login">
     <template v-slot:header>Join the chatroom</template>
     <template v-slot:buttonText>log in</template>

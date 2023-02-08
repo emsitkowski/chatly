@@ -44,16 +44,18 @@ const props = defineProps({
 
 async function onSubmit() {
   isValidating.value = true;
-  if (props.type == "login") {
-    await signInUser(email.value, password.value);
-  } else if (props.type == "register") {
-    await signUpUser(email.value, password.value);
-  }
+  authError.value = "";
 
-  authError.value = "failed to authenticate, please try again";
-  isValidating.value = false;
-  email.value = "";
-  password.value = "";
+  try {
+    if (props.type == "login") {
+      await signInUser(email.value, password.value);
+    } else if (props.type == "register") {
+      await signUpUser(email.value, password.value);
+    }
+  } catch (error) {
+    isValidating.value = false;
+    authError.value = "failed to authenticate, please try again";
+  }
 }
 </script>
 
