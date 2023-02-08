@@ -8,7 +8,7 @@ const signUpUser = async (email, password) => {
       router.push("/");
     })
     .catch((error) => {
-      error.value = error.code;
+      throw new Error("Failed to register, please try again.", error);
     });
 };
 

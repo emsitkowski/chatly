@@ -8,7 +8,7 @@ const signInUser = async (email, password) => {
       router.push("/chatroom");
     })
     .catch((error) => {
-      throw new Error("failed to sign in", error);
+      throw new Error("Failed to sign in, please try again.", error);
     });
 };
 

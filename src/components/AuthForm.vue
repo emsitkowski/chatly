@@ -54,7 +54,7 @@ async function onSubmit() {
     }
   } catch (error) {
     isValidating.value = false;
-    authError.value = "failed to authenticate, please try again";
+    authError.value = error.message;
   }
 }
 </script>
