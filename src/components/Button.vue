@@ -1,5 +1,5 @@
 <template>
-  <button :class="class" :disabled="isLoading">
+  <button :class="class">
     <span>
       {{ text }}
     </span>
@@ -11,7 +11,6 @@
 const props = defineProps({
   text: String,
   class: String,
-  isLoading: Boolean,
 });
 </script>
 
