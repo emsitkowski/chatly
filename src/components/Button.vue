@@ -50,6 +50,7 @@ button {
     background: $gradient-primary;
     width: unset;
     padding: 12px;
+    height: 100%;
   }
 
   &[disabled] {
