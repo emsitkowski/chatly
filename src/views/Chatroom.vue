@@ -1,14 +1,16 @@
 <template>
-  <h2>Welcome to the chatroom</h2>
-  <div class="chatroom">
-    <div class="inner-wrapper">
-      <div class="messages">
-        <div v-for="doc in documents" :key="doc.message">
-          <div class="msg">{{ doc.message }}, {{ doc.user }}</div>
+  <div class="container-full">
+    <h1>Welcome to the chatroom</h1>
+    <div class="chatroom">
+      <div class="inner-wrapper">
+        <div class="messages">
+          <div v-for="doc in documents" :key="doc.message">
+            <div class="msg">{{ doc.message }}, {{ doc.user }}</div>
+          </div>
         </div>
       </div>
+      <NewChatForm />
     </div>
-    <NewChatForm />
   </div>
 </template>
 
@@ -22,18 +24,22 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/style/theme.scss";
 .chatroom {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border: 1px solid black;
-  border-radius: 16px;
+  flex-direction: column-reverse;
   width: 100%;
-  min-height: 400px;
+  max-width: 768px;
+  background-color: $gray-100;
+  border-radius: $border-md;
+  overflow: hidden;
+  @media (min-width: $sm) {
+    flex-direction: row;
+  }
 }
 
 .inner-wrapper {
-  padding: 32px;
+  padding: $spacing-2xl;
 }
 </style>

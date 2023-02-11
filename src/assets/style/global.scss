@@ -5,6 +5,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid $primary-200;
+  }
 }
 
 html {
@@ -74,4 +78,30 @@ p {
   align-items: center;
   justify-content: center;
   padding: $spacing-3xl 0;
+}
+
+// >>> Forms
+form {
+  input {
+    width: 100%;
+    border: 2px solid $gray-200;
+    padding: 12px;
+    border-radius: $border-sm;
+    background-color: rgba(255, 255, 255, 0.6);
+
+    &::placeholder {
+      font-size: 1.4rem;
+      opacity: 0.4;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+  label {
+    margin-bottom: 6px;
+    font-size: 1.4rem;
+    text-align: start;
+    font-weight: 300;
+  }
 }
