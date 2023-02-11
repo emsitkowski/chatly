@@ -10,7 +10,7 @@
         </router-link>
       </template>
       <template v-slot:image>
-        <img src="@/assets/img/girl-on-the-blue-wall.jpg" alt="" />
+        <img src="@/assets/img/girl-on-the-blue-wall.jpg" alt="Girl on the blue wall" />
       </template>
     </AuthSection>
   </div>
