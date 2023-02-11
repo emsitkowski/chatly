@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoading" class="loader">
+  <div v-if="isLoading" class="loader" :transparent="transparent">
     <div class="loader__spinner"></div>
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script setup>
 const props = defineProps({
   isLoading: Boolean,
+  transparent: Boolean,
 });
 </script>
 
@@ -20,8 +21,12 @@ const props = defineProps({
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.6);
+  background: $gray-100;
   z-index: 100;
+
+  &[transparent="true"] {
+    background: transparentize($color: $gray-100, $amount: 0.4);
+  }
 
   &__spinner {
     position: absolute;
@@ -30,7 +35,7 @@ const props = defineProps({
     transform: translate(-50%, -50%);
     width: 48px;
     height: 48px;
-    border: 5px solid $primary-100;
+    border: 3px solid $primary-100;
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
