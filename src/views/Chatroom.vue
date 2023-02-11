@@ -1,7 +1,7 @@
 <template>
   <div class="container-full">
     <!-- TODO: add user name here -->
-    <h1>Welcome back, 'user'</h1>
+    <!--     <h1>Welcome back, 'user'</h1> -->
     <div class="chatroom">
       <Loader :isLoading="isLoading" />
       <div class="inner-wrapper" ref="chatWindow">
@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <NewChatForm @toggleLoading="toggleLoading" />
+      <NewChatForm @toggleLoading="handleNewMessage" />
     </div>
   </div>
 </template>
@@ -29,9 +29,12 @@ import { ref, onMounted } from "vue";
 import { getCollection, documents } from "../composables/db-get-collection";
 import NewChatForm from "../components/NewChatForm.vue";
 import Loader from "../components/Loader.vue";
+import { initTransitions } from "../composables/transitions";
 
 const chatWindow = ref();
 const isLoading = ref(true);
+
+initTransitions();
 
 onMounted(async () => {
   // fetch all messages
@@ -44,10 +47,15 @@ onMounted(async () => {
   toggleLoading();
 });
 
-// Toggle chat window loading
 function toggleLoading() {
   // toggle loading
   isLoading.value = isLoading.value != true;
+}
+
+// Toggle chat window loading
+function handleNewMessage() {
+  // scroll to bottom
+  scrollToBottom();
 }
 
 // scroll chat window to bottom
