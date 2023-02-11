@@ -33,7 +33,9 @@
     </form>
 
     <!-- image -->
-    <div class="auth__image"></div>
+    <div class="auth__image">
+      <img src="@/assets/img/girl-on-the-blue-wall.jpg" alt="" />
+    </div>
   </div>
 </template>
 
@@ -91,6 +93,9 @@ async function onSubmit() {
     padding: $spacing-xl;
     flex-basis: 50%;
     @media (min-width: $sm) {
+      padding: $spacing-2xl $spacing-xl;
+    }
+    @media (min-width: $md) {
       padding: $spacing-2xl;
     }
 
@@ -154,15 +159,30 @@ async function onSubmit() {
   }
 
   &__image {
-    background: url("@/assets/img/girl-on-the-blue-wall.jpg") no-repeat 50% 40%;
-    background-size: cover;
+    position: relative;
+    /*     background: url("@/assets/img/girl-on-the-blue-wall.jpg") no-repeat 50% 40%;
+    background-size: cover; */
     margin: $spacing-xl $spacing-xl 0 $spacing-xl;
     border-radius: $border-md;
     flex-basis: 100%;
     min-height: 264px;
+    overflow: hidden;
     @media (min-width: $sm) {
       flex-basis: 50%;
       margin: $spacing-xl $spacing-xl $spacing-xl 0;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      max-height: 264px;
+      object-fit: cover;
+      object-position: 50% 4 0%;
+      @media (min-width: $sm) {
+        max-height: 100%;
+        object-position: 50%;
+      }
     }
   }
 }
