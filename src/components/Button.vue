@@ -1,6 +1,6 @@
 <template>
   <button :class="class">
-    <span>
+    <span v-if="text">
       {{ text }}
     </span>
     <slot name="icon"></slot>
@@ -18,6 +18,7 @@ const props = defineProps({
 @import "../assets/style/theme.scss";
 
 button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
