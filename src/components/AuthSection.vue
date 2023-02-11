@@ -1,22 +1,22 @@
 <template>
-  <div class="auth fade-in">
+  <div class="auth">
     <form class="auth__form" @submit.prevent="onSubmit">
-      <Loader :isLoading="isValidating" />
+      <Loader :isLoading="isValidating" transparent />
       <!-- header -->
-      <h2>
+      <h2 class="fade-in">
         <slot name="header"></slot>
       </h2>
       <!-- subheader -->
-      <p>
+      <p class="fade-in">
         <slot name="subheader"></slot>
       </p>
       <!-- email -->
-      <div class="email">
+      <div class="email fade-in">
         <label for="email">email</label>
         <input v-model="email" type="text" name="email" placeholder="enter your email" :disabled="isValidating" />
       </div>
       <!-- password -->
-      <div class="password">
+      <div class="password fade-in">
         <label for="password">password</label>
         <input v-model="password" type="password" name="password" placeholder="enter your password" :disabled="isValidating" />
       </div>
@@ -45,6 +45,7 @@ import { ref } from "vue";
 import { signInUser } from "../composables/login-service";
 import { signUpUser } from "../composables/signup-service";
 import Loader from "../components/Loader.vue";
+import { initTransitions } from "../composables/transitions";
 
 const email = ref("");
 const password = ref("");
@@ -54,6 +55,9 @@ const authError = ref();
 const props = defineProps({
   type: String,
 });
+
+// fire transitions
+initTransitions();
 
 async function onSubmit() {
   isValidating.value = true;
