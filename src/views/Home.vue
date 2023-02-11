@@ -1,6 +1,5 @@
 <template>
   <div class="container-full">
-    <!--     <h1>Join the chatroom</h1> -->
     <AuthSection type="login">
       <template v-slot:header>Log in</template>
       <template v-slot:subheader>Join the chatroom and meet awesome people just now!</template>

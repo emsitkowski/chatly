@@ -1,6 +1,5 @@
 <template>
   <div class="container-full">
-    <!--     <h1>Create an account</h1> -->
     <AuthSection type="register">
       <template v-slot:header>Register</template>
       <template v-slot:subheader>Create new account and join our awesome community!</template>

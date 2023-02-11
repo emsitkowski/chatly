@@ -1,5 +1,5 @@
 <template>
-  <div class="auth">
+  <div class="auth fade-in">
     <form class="auth__form" @submit.prevent="onSubmit">
       <Loader :isLoading="isValidating" />
       <!-- header -->
