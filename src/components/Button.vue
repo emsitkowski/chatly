@@ -54,7 +54,7 @@ button {
   }
 
   &[disabled] {
-    opacity: 0.6;
+    pointer-events: none;
   }
 }
 </style>
