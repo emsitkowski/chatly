@@ -6,7 +6,7 @@
       <div class="inner-wrapper" ref="chatWindow">
         <div class="messages">
           <div class="messages__item" v-for="doc in documents" :key="doc.message">
-            <div class="messages__item-avatar">{{ doc.user.slice(-1) }}</div>
+            <div class="messages__item-avatar">{{ doc.user.slice(0, 1) }}</div>
             <div class="messages__item-text">
               <span class="messages__item-text-message">
                 {{ doc.message }}

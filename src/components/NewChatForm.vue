@@ -54,6 +54,7 @@ form {
   button {
     position: absolute;
     right: 0;
+    border-radius: 0 $border-sm $border-sm 0;
   }
 }
 </style>
