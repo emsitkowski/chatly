@@ -1,5 +1,6 @@
 <template>
   <div class="auth">
+    <Loader :isLoading="isValidating" />
     <form class="auth__form" @submit.prevent="onSubmit">
       <!-- header -->
       <h2>
@@ -43,7 +44,7 @@
 import { ref } from "vue";
 import { signInUser } from "../composables/login-service";
 import { signUpUser } from "../composables/signup-service";
-import Button from "../components/Button.vue";
+import Loader from "../components/Loader.vue";
 
 const email = ref("");
 const password = ref("");
@@ -75,6 +76,7 @@ async function onSubmit() {
 @import "../assets/style/theme.scss";
 
 .auth {
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
