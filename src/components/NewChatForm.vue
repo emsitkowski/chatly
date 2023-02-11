@@ -1,9 +1,13 @@
 <template>
-  <div class="new-msg">
-    <form @submit.prevent="handleSubmit">
-      <input type="text" name="new" placeholder="new message" v-model="newMessage" :disabled="isSending" />
-    </form>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <input type="text" name="new" placeholder="new message" v-model="newMessage" :disabled="isSending" />
+
+    <Button class="square" :isLoading="isSending">
+      <template v-slot:icon>
+        <img src="@/assets/img/paper-plane-outline.svg" alt="paper plane" />
+      </template>
+    </Button>
+  </form>
 </template>
 
 <script setup>
@@ -11,33 +15,45 @@ import { ref } from "vue";
 import { writeDocument } from "../composables/db-write-document";
 import { getCollection } from "../composables/db-get-collection";
 import { auth, timestamp } from "./../config/firebase";
+import Button from "../components/Button.vue";
 
 const newMessage = ref();
 const isSending = ref();
 
-const emit = defineEmits(["test"]);
+const emit = defineEmits(["submitted"]);
 
 async function handleSubmit() {
-  isSending.value = true;
+  if (newMessage.value.length > 0) {
+    isSending.value = true;
 
-  const chat = {
-    user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
-    message: newMessage.value,
-    createdAt: timestamp,
-  };
+    const chat = {
+      user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
+      message: newMessage.value,
+      createdAt: timestamp,
+    };
 
-  await writeDocument("messages", chat);
-  await getCollection("messages");
+    await writeDocument("messages", chat);
+    await getCollection("messages");
 
-  emit("submitted");
-  isSending.value = false;
-  newMessage.value = "";
+    emit("submitted");
+    newMessage.value = "";
+    isSending.value = false;
+  }
 }
 </script>
 
-<style scoped>
-.msg {
-  font-weight: 300;
-  text-align: start;
+<style lang="scss" scoped>
+@import "../assets/style/theme.scss";
+
+form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: $spacing-xl;
+
+  button {
+    position: absolute;
+    right: 0;
+  }
 }
 </style>
