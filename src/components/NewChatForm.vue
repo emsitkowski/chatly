@@ -2,7 +2,7 @@
   <form @submit.prevent="handleSubmit">
     <input type="text" name="new" placeholder="new message" v-model="newMessage" :disabled="isSending" />
 
-    <Button class="square" :isLoading="isSending">
+    <Button class="square" isLoading>
       <template v-slot:icon>
         <img src="@/assets/img/paper-plane-outline.svg" alt="paper plane" />
       </template>
@@ -20,11 +20,12 @@ import Button from "../components/Button.vue";
 const newMessage = ref();
 const isSending = ref();
 
-const emit = defineEmits(["submitted"]);
+const emit = defineEmits(["toggleLoading"]);
 
 async function handleSubmit() {
   if (newMessage.value.length > 0) {
     isSending.value = true;
+    emit("toggleLoading");
 
     const chat = {
       user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
@@ -35,7 +36,7 @@ async function handleSubmit() {
     await writeDocument("messages", chat);
     await getCollection("messages");
 
-    emit("submitted");
+    emit("toggleLoading");
     newMessage.value = "";
     isSending.value = false;
   }

@@ -3,6 +3,7 @@
     <!-- TODO: add user name here -->
     <h1>Welcome back, 'user'</h1>
     <div class="chatroom">
+      <Loader :isLoading="isLoading" />
       <div class="inner-wrapper" ref="chatWindow">
         <div class="messages">
           <div class="messages__item" v-for="doc in documents" :key="doc.message">
@@ -18,17 +19,19 @@
           </div>
         </div>
       </div>
-      <NewChatForm @submitted="scrollToBottom" />
+      <NewChatForm @toggleLoading="toggleLoading" />
     </div>
   </div>
 </template>
 
 <script setup>
-import NewChatForm from "../components/NewChatForm.vue";
 import { ref, onMounted } from "vue";
 import { getCollection, documents } from "../composables/db-get-collection";
+import NewChatForm from "../components/NewChatForm.vue";
+import Loader from "../components/Loader.vue";
 
 const chatWindow = ref();
+const isLoading = ref(true);
 
 onMounted(async () => {
   // fetch all messages
@@ -37,7 +40,15 @@ onMounted(async () => {
   // scroll chat window to bottom on mount & resize
   scrollToBottom();
   window.addEventListener("resize", scrollToBottom);
+
+  toggleLoading();
 });
+
+// Toggle chat window loading
+function toggleLoading() {
+  // toggle loading
+  isLoading.value = isLoading.value != true;
+}
 
 // scroll chat window to bottom
 function scrollToBottom() {
@@ -48,14 +59,17 @@ function scrollToBottom() {
 <style lang="scss" scoped>
 @import "../assets/style/theme.scss";
 .chatroom {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   max-width: 768px;
-  max-height: 640px;
+  height: 640px;
   background-color: $gray-100;
   border-radius: $border-md;
   padding: $spacing-2xl;
+  overflow: hidden;
 
   .inner-wrapper {
     width: 100%;
