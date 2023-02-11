@@ -24,6 +24,7 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
   color: $dark-100;
+  min-height: 100vh;
 }
 
 a {
@@ -109,4 +110,15 @@ form {
     text-align: start;
     font-weight: 300;
   }
+}
+
+// >>> Transitions
+.fade-in {
+  opacity: 0;
+  transition: $transition-medium linear;
+}
+
+.fade-scale {
+  opacity: 0;
+  transition: $transition-medium linear;
 }
