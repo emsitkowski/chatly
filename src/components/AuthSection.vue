@@ -135,29 +135,6 @@ async function onSubmit() {
     }
   }
 
-  &__form input:disabled {
-    opacity: 0.6;
-  }
-
-  &__form input {
-    border: none;
-    padding: 12px;
-    border-radius: $border-sm;
-    background-color: #fff;
-
-    &::placeholder {
-      font-size: 1.4rem;
-      opacity: 0.4;
-    }
-  }
-
-  &__form label {
-    margin-bottom: 6px;
-    font-size: 1.4rem;
-    text-align: start;
-    font-weight: 300;
-  }
-
   &__image {
     position: relative;
     margin: $spacing-xl $spacing-xl 0 $spacing-xl;

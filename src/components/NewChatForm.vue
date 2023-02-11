@@ -1,7 +1,7 @@
 <template>
   <div class="new-msg">
     <form @submit.prevent="handleSubmit">
-      <input type="text" name="new" id="" placeholder="new message" v-model="newMessage" :disabled="isSending" />
+      <input type="text" name="new" placeholder="new message" v-model="newMessage" :disabled="isSending" />
     </form>
   </div>
 </template>
@@ -15,6 +15,8 @@ import { auth, timestamp } from "./../config/firebase";
 const newMessage = ref();
 const isSending = ref();
 
+const emit = defineEmits(["test"]);
+
 async function handleSubmit() {
   isSending.value = true;
 
@@ -27,6 +29,7 @@ async function handleSubmit() {
   await writeDocument("messages", chat);
   await getCollection("messages");
 
+  emit("submitted");
   isSending.value = false;
   newMessage.value = "";
 }
