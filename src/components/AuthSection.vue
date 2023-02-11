@@ -34,7 +34,7 @@
 
     <!-- image -->
     <div class="auth__image">
-      <img src="@/assets/img/girl-on-the-blue-wall.jpg" alt="" />
+      <slot name="image"></slot>
     </div>
   </div>
 </template>
@@ -160,8 +160,6 @@ async function onSubmit() {
 
   &__image {
     position: relative;
-    /*     background: url("@/assets/img/girl-on-the-blue-wall.jpg") no-repeat 50% 40%;
-    background-size: cover; */
     margin: $spacing-xl $spacing-xl 0 $spacing-xl;
     border-radius: $border-md;
     flex-basis: 100%;
@@ -178,7 +176,7 @@ async function onSubmit() {
       height: 100%;
       max-height: 264px;
       object-fit: cover;
-      object-position: 50% 4 0%;
+      object-position: 50% 40%;
       @media (min-width: $sm) {
         max-height: 100%;
         object-position: 50%;

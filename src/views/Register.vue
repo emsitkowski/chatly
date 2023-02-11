@@ -10,6 +10,9 @@
           <Button text="Log in" class="secondary" />
         </router-link>
       </template>
+      <template v-slot:image>
+        <img src="@/assets/img/girl-on-the-blue-wall.jpg" alt="" />
+      </template>
     </AuthSection>
   </div>
 </template>

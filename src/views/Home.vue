@@ -10,6 +10,9 @@
           <Button text="Create an account" class="secondary" />
         </router-link>
       </template>
+      <template v-slot:image>
+        <img src="@/assets/img/friends.jpg" alt="friends" />
+      </template>
     </AuthSection>
   </div>
 </template>
