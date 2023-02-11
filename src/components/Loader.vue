@@ -20,7 +20,7 @@ const props = defineProps({
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.6);
   z-index: 10;
 
   &__spinner {
