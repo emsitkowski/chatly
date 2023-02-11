@@ -1,5 +1,10 @@
 <template>
-  <button :class="class" :disabled="isLoading">{{ text }}</button>
+  <button :class="class" :disabled="isLoading">
+    <span>
+      {{ text }}
+    </span>
+    <slot name="icon"></slot>
+  </button>
 </template>
 
 <script setup>
@@ -14,6 +19,9 @@ const props = defineProps({
 @import "../assets/style/theme.scss";
 
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   border: none;
   padding: $spacing-lg $spacing-xl;
@@ -22,6 +30,7 @@ button {
   font-size: 1.6rem;
   font-weight: 300;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.8;
@@ -37,8 +46,14 @@ button {
     color: rgba(51, 51, 51, 0.6);
   }
 
+  &.square {
+    background: $gradient-primary;
+    width: unset;
+    padding: 12px;
+  }
+
   &[disabled] {
-    background: black;
+    opacity: 0.6;
   }
 }
 </style>
