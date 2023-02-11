@@ -10,7 +10,7 @@
         </router-link>
       </template>
       <template v-slot:image>
-        <img src="@/assets/img/friends.jpg" alt="friends" />
+        <img src="@/assets/img/friends.jpg" alt="Friends" />
       </template>
     </AuthSection>
   </div>
