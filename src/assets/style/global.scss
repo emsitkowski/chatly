@@ -59,11 +59,19 @@ p {
 }
 
 // >>> Layout
+.container {
+  margin: 0 12px;
+  @media (min-width: $sm) {
+    margin: 0 24px;
+  }
+}
+
 .container-full {
-  min-width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: $spacing-3xl 0;
 }

@@ -74,18 +74,25 @@ async function onSubmit() {
 
 .auth {
   display: flex;
+  flex-direction: column-reverse;
   width: 100%;
   max-width: 768px;
   background-color: $gray-100;
   border-radius: $border-md;
   overflow: hidden;
+  @media (min-width: $sm) {
+    flex-direction: row;
+  }
 
   &__form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: $spacing-2xl;
+    padding: $spacing-xl;
     flex-basis: 50%;
+    @media (min-width: $sm) {
+      padding: $spacing-2xl;
+    }
 
     h2 {
       margin-bottom: $spacing-md;
@@ -147,11 +154,16 @@ async function onSubmit() {
   }
 
   &__image {
-    background: url("@/assets/img/girl-on-the-blue-wall.jpg") no-repeat 50%;
+    background: url("@/assets/img/girl-on-the-blue-wall.jpg") no-repeat 50% 40%;
     background-size: cover;
-    margin: $spacing-xl $spacing-xl $spacing-xl 0;
+    margin: $spacing-xl $spacing-xl 0 $spacing-xl;
     border-radius: $border-md;
-    flex-basis: 50%;
+    flex-basis: 100%;
+    min-height: 264px;
+    @media (min-width: $sm) {
+      flex-basis: 50%;
+      margin: $spacing-xl $spacing-xl $spacing-xl 0;
+    }
   }
 }
 </style>
