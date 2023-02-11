@@ -1,7 +1,7 @@
 <template>
   <div class="auth">
-    <Loader :isLoading="isValidating" />
     <form class="auth__form" @submit.prevent="onSubmit">
+      <Loader :isLoading="isValidating" />
       <!-- header -->
       <h2>
         <slot name="header"></slot>
@@ -76,7 +76,6 @@ async function onSubmit() {
 @import "../assets/style/theme.scss";
 
 .auth {
-  position: relative;
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
@@ -89,6 +88,7 @@ async function onSubmit() {
   }
 
   &__form {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
