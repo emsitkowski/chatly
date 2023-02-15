@@ -19,32 +19,35 @@
           </div>
         </div>
       </div>
-      <NewChatForm @toggleLoading="handleNewMessage" />
+      <NewChatForm @messageSent="handleNewMessage" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { getCollection, documents } from "../composables/db-get-collection";
+import { getCollection, documents, areAllMessagesLoaded, numOfMessagesCurrentlyLoaded } from "../composables/db-get-collection";
+import { initTransitions } from "../composables/transitions";
 import NewChatForm from "../components/NewChatForm.vue";
 import Loader from "../components/Loader.vue";
-import { initTransitions } from "../composables/transitions";
 
 const chatWindow = ref();
 const isLoading = ref(true);
+const messagesLimit = ref(6);
 
 initTransitions();
 
 onMounted(async () => {
-  // fetch all messages
-  await getCollection("messages");
+  // fetch messages
+  await getCollection("messages", messagesLimit.value);
 
   // scroll chat window to bottom on mount & resize
-  scrollToBottom();
+  await scrollToBottom();
   window.addEventListener("resize", scrollToBottom);
 
   toggleLoading();
+
+  loadMoreMessages();
 });
 
 function toggleLoading() {
@@ -53,13 +56,38 @@ function toggleLoading() {
 }
 
 // Toggle chat window loading
-function handleNewMessage() {
+async function handleNewMessage() {
+  numOfMessagesCurrentlyLoaded.value++;
+  toggleLoading();
+
+  // fetch messages
+  await getCollection("messages", numOfMessagesCurrentlyLoaded.value);
+
+  // TODO : ADD NEW ITEM'S HEIGHT TO INITIAL LOAD MORE HEIGHT
+
   // scroll to bottom
   scrollToBottom();
+
+  // toggle loading
+  toggleLoading();
+}
+
+function loadMoreMessages() {
+  chatWindow.value.addEventListener("scroll", async () => {
+    let currentScrollPos = chatWindow.value.scrollTop;
+
+    if (currentScrollPos == 0 && !areAllMessagesLoaded.value) {
+      isLoading.value = true;
+
+      await getCollection("messages", numOfMessagesCurrentlyLoaded.value + messagesLimit.value);
+
+      isLoading.value = false;
+    }
+  });
 }
 
 // scroll chat window to bottom
-function scrollToBottom() {
+async function scrollToBottom() {
   chatWindow.value.scrollTo(0, chatWindow.value.scrollHeight);
 }
 </script>
@@ -84,6 +112,8 @@ function scrollToBottom() {
     overflow-y: scroll;
 
     .messages {
+      display: flex;
+      flex-direction: column-reverse;
       &__item {
         display: flex;
         align-items: center;
