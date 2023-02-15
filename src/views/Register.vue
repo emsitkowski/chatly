@@ -10,7 +10,7 @@
         </router-link>
       </template>
       <template v-slot:image>
-        <LazyImage src="../src/assets/img/girl-on-the-blue-wall.jpg" alt="Girl on the blue wall"></LazyImage>
+        <BlurredLazyImage src="../src/assets/img/girl-on-the-blue-wall.jpg" alt="Girl on the blue wall"></BlurredLazyImage>
       </template>
     </AuthSection>
   </div>
@@ -19,7 +19,7 @@
 <script setup>
 import AuthSection from "../components/AuthSection.vue";
 import Button from "../components/Button.vue";
-import LazyImage from "../components/LazyImage.vue";
+import BlurredLazyImage from "../components/BlurredLazyImage.vue";
 </script>
 
 <style lang="scss" scoped></style>
