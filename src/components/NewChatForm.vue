@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input type="text" name="new" placeholder="new message" v-model="newMessage" :disabled="isSending" />
+    <input type="text" name="new" placeholder="new message" v-model="newMessage" autocomplete="off" :disabled="isSending" />
 
     <Button class="square" isLoading>
       <template v-slot:icon>
@@ -13,19 +13,17 @@
 <script setup>
 import { ref } from "vue";
 import { writeDocument } from "../composables/db-write-document";
-import { getCollection } from "../composables/db-get-collection";
 import { auth, timestamp } from "./../config/firebase";
 import Button from "../components/Button.vue";
 
 const newMessage = ref();
 const isSending = ref();
 
-const emit = defineEmits(["toggleLoading"]);
+const emit = defineEmits(["messageSent"]);
 
 async function handleSubmit() {
   if (newMessage.value.length > 0) {
     isSending.value = true;
-    emit("toggleLoading");
 
     const chat = {
       user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
@@ -34,9 +32,8 @@ async function handleSubmit() {
     };
 
     await writeDocument("messages", chat);
-    await getCollection("messages");
 
-    emit("toggleLoading");
+    emit("messageSent");
     newMessage.value = "";
     isSending.value = false;
   }
