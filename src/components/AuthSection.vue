@@ -13,12 +13,19 @@
       <!-- email -->
       <div class="email fade-in">
         <label for="email">email</label>
-        <input v-model="email" type="text" name="email" placeholder="enter your email" :disabled="isValidating" />
+        <input v-model="email" type="text" name="email" placeholder="enter your email" autocomplete="off" :disabled="isValidating" />
       </div>
       <!-- password -->
       <div class="password fade-in">
         <label for="password">password</label>
-        <input v-model="password" type="password" name="password" placeholder="enter your password" :disabled="isValidating" />
+        <input
+          v-model="password"
+          type="password"
+          name="password"
+          placeholder="enter your password"
+          autocomplete="off"
+          :disabled="isValidating"
+        />
       </div>
       <!-- error -->
       <div class="error">
@@ -147,7 +154,6 @@ async function onSubmit() {
     border-radius: $border-md;
     flex-basis: 100%;
     min-height: 264px;
-    overflow: hidden;
     @media (min-width: $sm) {
       flex-basis: 50%;
       margin: $spacing-xl $spacing-xl $spacing-xl 0;
@@ -160,6 +166,7 @@ async function onSubmit() {
       max-height: 264px;
       object-fit: cover;
       object-position: 50% 40%;
+      border-radius: $border-md;
       @media (min-width: $sm) {
         max-height: 100%;
         object-position: 50%;
