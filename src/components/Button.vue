@@ -4,6 +4,7 @@
       {{ text }}
     </span>
     <slot name="icon"></slot>
+    <slot name="loader"></slot>
   </button>
 </template>
 
@@ -50,7 +51,8 @@ button {
     background: $gradient-primary;
     width: unset;
     padding: 12px;
-    height: 100%;
+    width: 44px;
+    height: 44px;
   }
 
   &[disabled] {

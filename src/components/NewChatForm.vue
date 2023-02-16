@@ -6,31 +6,48 @@
       placeholder="new message"
       v-model="newMessage"
       autocomplete="off"
-      :disabled="isSending"
       ref="newMessageElement"
-      autofocus
+      maxlength="640"
+      @input="updateCharCounter"
+      :disabled="isSending"
     />
 
     <Button class="square" isLoading>
+      <template v-slot:loader>
+        <Loader v-show="isSending" isLoading class="loader" />
+      </template>
       <template v-slot:icon>
-        <img src="@/assets/img/paper-plane-outline.svg" alt="paper plane" />
+        <img v-show="!isSending" src="@/assets/img/paper-plane-outline.svg" alt="paper plane" />
       </template>
     </Button>
+    <p class="character-counter">{{ charCount }} / 640</p>
   </form>
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+import { ref, nextTick, onMounted } from "vue";
 import { writeDocument } from "../composables/db-write-document";
 import { auth, timestamp } from "./../config/firebase";
 import Button from "../components/Button.vue";
+import Loader from "../components/Loader.vue";
 
 const newMessage = ref();
 const newMessageElement = ref();
 const isSending = ref();
+const charCount = ref(0);
+
+// autofocus
+onMounted(() => {
+  nextTick(() => {
+    newMessageElement.value.focus();
+  });
+});
+
+function updateCharCounter() {
+  charCount.value = newMessage.value.length;
+}
 
 const emit = defineEmits(["messageSent"]);
-
 async function handleSubmit() {
   if (newMessage.value.length > 0) {
     isSending.value = true;
@@ -44,11 +61,14 @@ async function handleSubmit() {
 
     await writeDocument("messages", chat);
 
-    isSending.value = false;
-    nextTick(() => {
-      newMessage.value = "";
-      newMessageElement.value.focus();
-    });
+    setTimeout(() => {
+      nextTick(() => {
+        isSending.value = false;
+        newMessage.value = "";
+        charCount.value = 0;
+        newMessageElement.value.focus();
+      });
+    }, 200);
   }
 }
 </script>
@@ -62,10 +82,31 @@ form {
   align-items: center;
   margin-top: $spacing-xl;
 
+  input {
+    padding: 12px 54px 12px 12px;
+  }
+
   button {
     position: absolute;
     right: 0;
     border-radius: 0 $border-sm $border-sm 0;
+  }
+}
+
+.character-counter {
+  position: absolute;
+  font-size: 12px;
+  right: 46px;
+  bottom: 4px;
+  opacity: 0.4;
+}
+
+.loader {
+  :deep(.loader__spinner) {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
   }
 }
 </style>

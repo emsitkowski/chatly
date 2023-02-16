@@ -1,6 +1,6 @@
 <template>
   <div class="chatroom">
-    <Loader :isLoading="isLoading" transparent />
+    <Loader :isLoading="isLoading" />
     <div class="inner-wrapper" ref="chatWindow">
       <div class="messages">
         <div class="messages__item" v-for="doc in documents" :key="doc.message">
@@ -53,7 +53,6 @@ function toggleLoading() {
 
 // Toggle chat window loading
 async function handleNewMessage() {
-  toggleLoading();
   numOfMessagesCurrentlyLoaded.value++;
 
   // fetch messages
@@ -61,9 +60,6 @@ async function handleNewMessage() {
 
   // scroll to bottom
   scrollToBottom();
-
-  // toggle loading
-  toggleLoading();
 }
 
 function initInfiniteScroll() {
@@ -100,6 +96,7 @@ async function scrollToBottom() {
 
 <style lang="scss" scoped>
 @import "../assets/style/theme.scss";
+
 .chatroom {
   position: relative;
   display: flex;

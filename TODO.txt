@@ -2,11 +2,10 @@
 
 must haves:
 – add chat messages timestamps
-- style the chat window scrollbar
-- limit chat message length + show chars indicator in the input (ex. 0/100)
 – fix a bug, when sometimes it's impossible to login/register (try catch maybe after some interval?)
 - add navbar
 - MOVE BOX STYLING INTO GLOBAL STYLESHEET & FIX CHATROOM.VUE MOBILE VIEW
+– code refactoring and cleanup
 
 
 nice to haves:
