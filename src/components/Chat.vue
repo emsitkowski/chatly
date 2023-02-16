@@ -1,6 +1,6 @@
 <template>
   <div class="chatroom">
-    <Loader :isLoading="isLoading" />
+    <Loader :isLoading="isLoading" transparent />
     <div class="inner-wrapper" ref="chatWindow">
       <div class="messages">
         <div class="messages__item" v-for="doc in documents" :key="doc.message">
@@ -29,16 +29,21 @@ import Loader from "../components/Loader.vue";
 
 const chatWindow = ref();
 const isLoading = ref(true);
-const messagesLimit = ref(6);
+const messagesLimit = ref(20);
 
 initTransitions();
 
 onMounted(async () => {
+  // scroll to bottom on mount
+  scrollToBottom();
+
   // fetch messages
   await getCollection("messages", messagesLimit.value);
 
-  // scroll chat window to bottom on mount & resize
-  await scrollToBottom();
+  // scroll chat window to bottom again when all messages are loaded
+  scrollToBottom();
+
+  // keep chat window scrolled bottom on browser resize
   window.addEventListener("resize", scrollToBottom);
 
   toggleLoading();
@@ -107,8 +112,21 @@ async function scrollToBottom() {
   height: 640px;
   background-color: $gray-100;
   border-radius: $border-md;
-  padding: $spacing-2xl;
+  padding: 0 $spacing-2xl $spacing-2xl $spacing-2xl;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 70%, $gray-100 100%);
+    pointer-events: none;
+    user-select: none;
+  }
 
   .inner-wrapper {
     width: 100%;
