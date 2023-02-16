@@ -63,8 +63,6 @@ async function handleNewMessage() {
   // fetch messages
   await getCollection("messages", numOfMessagesCurrentlyLoaded.value);
 
-  // TODO : ADD NEW ITEM'S HEIGHT TO INITIAL LOAD MORE HEIGHT
-
   // scroll to bottom
   scrollToBottom();
 
@@ -79,7 +77,19 @@ function loadMoreMessages() {
     if (currentScrollPos == 0 && !areAllMessagesLoaded.value) {
       isLoading.value = true;
 
+      // get chat window initial height
+      const initialHeight = chatWindow.value.scrollHeight;
+
       await getCollection("messages", numOfMessagesCurrentlyLoaded.value + messagesLimit.value);
+
+      // get chat window new height
+      const newHeight = chatWindow.value.scrollHeight;
+
+      // calculate difference between new height & initial height to calc scroll pos before loading more messages
+      const calcNewHeight = newHeight - initialHeight;
+
+      // update scroll position to previous state
+      chatWindow.value.scrollTo(0, calcNewHeight);
 
       isLoading.value = false;
     }
