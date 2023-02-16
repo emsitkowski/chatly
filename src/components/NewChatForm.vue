@@ -57,18 +57,13 @@ async function handleSubmit() {
       createdAt: timestamp,
     };
 
+    await writeDocument("messages", chat);
     emit("messageSent");
 
-    await writeDocument("messages", chat);
-
-    setTimeout(() => {
-      nextTick(() => {
-        isSending.value = false;
-        newMessage.value = "";
-        charCount.value = 0;
-        newMessageElement.value.focus();
-      });
-    }, 200);
+    isSending.value = false;
+    newMessage.value = "";
+    charCount.value = 0;
+    newMessageElement.value.focus();
   }
 }
 </script>
@@ -96,12 +91,13 @@ form {
 .character-counter {
   position: absolute;
   font-size: 12px;
-  right: 46px;
+  right: 50px;
   bottom: 4px;
   opacity: 0.4;
 }
 
 .loader {
+  background: transparentize($color: $gray-100, $amount: 0.6);
   :deep(.loader__spinner) {
     width: 22px;
     height: 22px;

@@ -37,6 +37,12 @@ button {
     opacity: 0.8;
   }
 
+  &:focus {
+    outline: 2px solid #c7c7c7;
+    background: #fff;
+    border-radius: $border-sm;
+  }
+
   &.primary {
     background: $gradient-primary;
     color: $gray-100;

@@ -14,6 +14,7 @@ nice to haves:
 - add page loader (on refresh and first page enter)
 - add :focus state for buttons
 - add loading button in chatroom when sending new message
+– better error handling authentication
 
 difficult:
 - add functionality with private rooms (users can enter specific chatroom by typing the secret code)

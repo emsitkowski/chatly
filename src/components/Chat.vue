@@ -149,6 +149,7 @@ async function scrollToBottom() {
 
           &-message {
             font-size: 1.4rem;
+            word-break: break-all;
           }
 
           &-author {
