@@ -13,7 +13,15 @@
       <!-- email -->
       <div class="email fade-in">
         <label for="email">email</label>
-        <input v-model="email" type="text" name="email" placeholder="enter your email" autocomplete="off" :disabled="isValidating" />
+        <input
+          v-model="email"
+          ref="emailInput"
+          type="text"
+          name="email"
+          placeholder="enter your email"
+          autocomplete="off"
+          :disabled="isValidating"
+        />
       </div>
       <!-- password -->
       <div class="password fade-in">
@@ -48,13 +56,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { signInUser } from "../composables/login-service";
 import { signUpUser } from "../composables/signup-service";
 import Loader from "../components/Loader.vue";
 import { initTransitions } from "../composables/transitions";
 
 const email = ref("");
+const emailInput = ref("");
 const password = ref("");
 const isValidating = ref(false);
 const authError = ref();
@@ -65,6 +74,11 @@ const props = defineProps({
 
 // fire transitions
 initTransitions();
+
+// autofocus
+onMounted(() => {
+  emailInput.value.focus();
+});
 
 async function onSubmit() {
   isValidating.value = true;
