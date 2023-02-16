@@ -7,7 +7,6 @@
 
 <script setup>
 import { initTransitions } from "../composables/transitions";
-import { defineProps } from "vue";
 
 initTransitions();
 defineProps({
