@@ -34,19 +34,19 @@ const emit = defineEmits(["messageSent"]);
 async function handleSubmit() {
   if (newMessage.value.length > 0) {
     isSending.value = true;
-
     const chat = {
       user: `${auth.currentUser.email.slice(0, auth.currentUser.email.indexOf("@"))}`,
       message: newMessage.value,
       createdAt: timestamp,
     };
 
+    emit("messageSent");
+
     await writeDocument("messages", chat);
 
-    emit("messageSent");
-    newMessage.value = "";
     isSending.value = false;
     nextTick(() => {
+      newMessage.value = "";
       newMessageElement.value.focus();
     });
   }

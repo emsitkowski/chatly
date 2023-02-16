@@ -3,7 +3,7 @@
     <!-- TODO: add user name here -->
     <!--     <h1>Welcome back, 'user'</h1> -->
     <div class="chatroom">
-      <Loader :isLoading="isLoading" />
+      <Loader :isLoading="isLoading" transparent />
       <div class="inner-wrapper" ref="chatWindow">
         <div class="messages">
           <div class="messages__item" v-for="doc in documents" :key="doc.message">
@@ -47,7 +47,7 @@ onMounted(async () => {
 
   toggleLoading();
 
-  loadMoreMessages();
+  initInfiniteScroll();
 });
 
 function toggleLoading() {
@@ -57,8 +57,8 @@ function toggleLoading() {
 
 // Toggle chat window loading
 async function handleNewMessage() {
-  numOfMessagesCurrentlyLoaded.value++;
   toggleLoading();
+  numOfMessagesCurrentlyLoaded.value++;
 
   // fetch messages
   await getCollection("messages", numOfMessagesCurrentlyLoaded.value);
@@ -70,7 +70,7 @@ async function handleNewMessage() {
   toggleLoading();
 }
 
-function loadMoreMessages() {
+function initInfiniteScroll() {
   chatWindow.value.addEventListener("scroll", async () => {
     let currentScrollPos = chatWindow.value.scrollTop;
 

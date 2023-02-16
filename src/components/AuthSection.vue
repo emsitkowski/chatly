@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { signInUser } from "../composables/login-service";
 import { signUpUser } from "../composables/signup-service";
 import Loader from "../components/Loader.vue";
@@ -77,7 +77,9 @@ initTransitions();
 
 // autofocus
 onMounted(() => {
-  emailInput.value.focus();
+  nextTick(() => {
+    emailInput.value.focus();
+  });
 });
 
 async function onSubmit() {
