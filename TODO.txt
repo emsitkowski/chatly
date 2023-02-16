@@ -1,0 +1,23 @@
+>>>> TODOS:
+
+must haves:
+– add chat messages timestamps
+- style the chat window scrollbar
+- limit chat message length + show chars indicator in the input (ex. 0/100)
+– fix a bug, when sometimes it's impossible to login/register (try catch maybe after some interval?)
+- add navbar
+- MOVE BOX STYLING INTO GLOBAL STYLESHEET & FIX CHATROOM.VUE MOBILE VIEW
+
+
+nice to haves:
+- add skeleton loader
+– add 'Currently Online' section (show which users are online atm)
+- add page loader (on refresh and first page enter)
+- add :focus state for buttons
+- add loading button in chatroom when sending new message
+
+difficult:
+- add functionality with private rooms (users can enter specific chatroom by typing the secret code)
+– use username & password login instead of email & password
+– log in automatically after registering an account
+
