@@ -1,6 +1,15 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input type="text" name="new" placeholder="new message" v-model="newMessage" autocomplete="off" :disabled="isSending" />
+    <input
+      type="text"
+      name="new"
+      placeholder="new message"
+      v-model="newMessage"
+      autocomplete="off"
+      :disabled="isSending"
+      ref="newMessageElement"
+      autofocus
+    />
 
     <Button class="square" isLoading>
       <template v-slot:icon>
@@ -11,12 +20,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { writeDocument } from "../composables/db-write-document";
 import { auth, timestamp } from "./../config/firebase";
 import Button from "../components/Button.vue";
 
 const newMessage = ref();
+const newMessageElement = ref();
 const isSending = ref();
 
 const emit = defineEmits(["messageSent"]);
@@ -36,6 +46,9 @@ async function handleSubmit() {
     emit("messageSent");
     newMessage.value = "";
     isSending.value = false;
+    nextTick(() => {
+      newMessageElement.value.focus();
+    });
   }
 }
 </script>
