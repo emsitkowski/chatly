@@ -108,6 +108,7 @@ async function onSubmit() {
   background-color: $gray-100;
   border-radius: $border-md;
   overflow: hidden;
+  box-shadow: $shadow-large;
   @media (min-width: $sm) {
     flex-direction: row;
   }
