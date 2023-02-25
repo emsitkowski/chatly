@@ -6,6 +6,7 @@ must haves:
 - add navbar
 - MOVE BOX STYLING INTO GLOBAL STYLESHEET & FIX CHATROOM.VUE MOBILE VIEW
 – code refactoring and cleanup
+– fix infinite loading overlay covering scrollbar on chat window
 
 
 nice to haves:
