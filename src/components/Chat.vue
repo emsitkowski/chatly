@@ -112,8 +112,11 @@ async function scrollToBottom() {
   height: 640px;
   background-color: $gray-100;
   border-radius: $border-md;
-  padding: 0 $spacing-2xl $spacing-2xl $spacing-2xl;
+  padding: 0 $spacing-lg $spacing-lg $spacing-lg;
   overflow: hidden;
+  @media (min-width: $sm) {
+    padding: 0 $spacing-2xl $spacing-2xl $spacing-2xl;
+  }
 
   &::before {
     content: "";
