@@ -9,6 +9,7 @@
 
 html {
   font-size: 10px;
+  background: black;
 }
 
 body {
@@ -73,12 +74,12 @@ p {
 
 .container-full {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: $spacing-3xl 0;
+  padding: $spacing-2xl 0 $spacing-3xl 0;
 }
 
 // >>> Forms
