@@ -12,7 +12,13 @@
             <span class="messages__item-text-author">
               {{ doc.user }}
             </span>
+            <!--             <span>{{ new Date(doc.createdAt.seconds * 1000).getDate() }}.{{ new Date(doc.createdAt.seconds * 1000).getMonth() + 1 }}</span>
+
+            <span>{{ new Date(doc.createdAt.seconds * 1000).getHours() }}:{{ new Date(doc.createdAt.seconds * 1000).getMinutes() }}</span> -->
           </div>
+          <span class="messages__item-date">
+            {{ formatDate(new Date(doc.createdAt.seconds * 1000)) }}
+          </span>
         </div>
       </div>
     </div>
@@ -31,6 +37,7 @@ const chatWindow = ref();
 const isLoading = ref(true);
 const messagesLimit = ref(20);
 
+// init transitions
 initTransitions();
 
 onMounted(async () => {
@@ -51,12 +58,37 @@ onMounted(async () => {
   initInfiniteScroll();
 });
 
+// Format date
+function formatDate(date) {
+  const allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  const monthAbbr = allMonths[date.getMonth()];
+  const day = date.getDate();
+  const hours = date.getHours();
+
+  // format minutes
+  const minutes = function () {
+    // add 0 if less than 10 minutes
+    if (date.getMinutes() < 10) {
+      return `0${date.getMinutes()}`;
+    } else {
+      return date.getMinutes();
+    }
+  };
+
+  // format date
+  const formattedDate = `
+  ${day} ${monthAbbr}, ${hours}:${minutes()}
+  `;
+
+  return formattedDate;
+}
+
+// toggle loading
 function toggleLoading() {
-  // toggle loading
   isLoading.value = isLoading.value != true;
 }
 
-// Toggle chat window loading
+// toggle chat window loading
 async function handleNewMessage() {
   numOfMessagesCurrentlyLoaded.value++;
 
@@ -139,6 +171,7 @@ async function scrollToBottom() {
       display: flex;
       flex-direction: column-reverse;
       &__item {
+        position: relative;
         display: flex;
         align-items: center;
         gap: $spacing-lg;
@@ -178,6 +211,15 @@ async function scrollToBottom() {
             font-weight: 200;
             color: lighten($dark-100, 40%);
           }
+        }
+
+        &-date {
+          position: absolute;
+          right: 16px;
+          bottom: 16px;
+          font-size: 1.2rem;
+          font-weight: 200;
+          color: lighten($dark-100, 40%);
         }
       }
     }
