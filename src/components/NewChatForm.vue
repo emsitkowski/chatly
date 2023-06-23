@@ -10,6 +10,7 @@
       maxlength="640"
       @input="updateCharCounter"
       :disabled="isSending"
+      id="blabla"
     />
 
     <Button class="square" isLoading>
@@ -39,7 +40,9 @@ const charCount = ref(0);
 // autofocus
 onMounted(() => {
   nextTick(() => {
-    newMessageElement.value.focus();
+    setTimeout(() => {
+      newMessageElement.value.focus();
+    }, 300);
   });
 });
 
@@ -63,7 +66,9 @@ async function handleSubmit() {
     isSending.value = false;
     newMessage.value = "";
     charCount.value = 0;
-    newMessageElement.value.focus();
+    setTimeout(() => {
+      newMessageElement.value.focus();
+    }, 300);
   }
 }
 </script>
