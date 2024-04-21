@@ -1,16 +1,16 @@
-# vue-project
+# Vue Chatroom – Vue + Firebase
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue Chatroom is a real-time chat application built with Vue.js and Firebase. It features Firebase Authentication for user management and Firebase Firestore for real-time messaging.
 
-## Recommended IDE Setup
+## Key features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Firebase Authentication for creating new accounts and signing in
+- Real-time messaging using Firebase Realtime Database
+- Infinite scroll for optimized chat history
 
-## Customize configuration
+## Getting started
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### Install dependencies
 
 ```sh
 npm install
