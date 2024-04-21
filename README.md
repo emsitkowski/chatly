@@ -17,13 +17,13 @@ Chatly is a real-time chat application built with Vue.js and Firebase. It featur
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run in development mode
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Build for production
 
 ```sh
 npm run build
