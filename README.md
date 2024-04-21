@@ -1,3 +1,5 @@
+Project made in the beginning of 2023
+
 # Chatly – Vue + Firebase Chatroom
 
 
