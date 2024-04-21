@@ -1,6 +1,6 @@
-# Vue Chatroom – Vue + Firebase
+# Chatly – Vue Chatroom – Vue + Firebase
 
-Vue Chatroom is a real-time chat application built with Vue.js and Firebase. It features Firebase Authentication for user management and Firebase Firestore for real-time messaging.
+Chatly is a real-time chat application built with Vue.js and Firebase. It features Firebase Authentication for user management and Firebase Firestore for real-time messaging.
 
 ## Key features
 
