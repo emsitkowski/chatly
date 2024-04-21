@@ -1,5 +1,9 @@
 # Chatly – Vue + Firebase Chatroom
 
+
+https://github.com/emsitkowski/chatly/assets/40630259/346d6455-c1ba-4ac5-a7f8-3ea5d21947a8
+
+
 Chatly is a real-time chat application built with Vue.js and Firebase. It features Firebase Authentication for user management and Firebase Firestore for real-time messaging.
 
 ## Key features
