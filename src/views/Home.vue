@@ -10,7 +10,7 @@
         </router-link>
       </template>
       <template v-slot:image>
-        <BlurredLazyImage src="../src/assets/img/friends.jpg" alt="Friends"></BlurredLazyImage>
+        <BlurredLazyImage src="/friends.jpg" alt="Friends"></BlurredLazyImage>
       </template>
     </AuthSection>
   </div>
