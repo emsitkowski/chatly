@@ -14,6 +14,7 @@ Chatly is a real-time chat application built with Vue.js and Firebase. It featur
 - Real-time messaging using Firebase Realtime Database
 - Infinite scroll for optimized chat history
 - Smooth loading indicators for better UX
+- Custom UI
 
 ## Getting started
 
